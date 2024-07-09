@@ -21,12 +21,14 @@ bool fash::path_exists(const std::string& path) {
     }
 }
 
+// replace forward slashes with backslashes
 void fash::normalize_slashes(std::string& path) {
     std::string normalized = path;
     std::replace(path.begin(), path.end(), '/', '\\');
     return;
 }
 
+// minimzes path to its equivalent shorter string
 std::string fash::minimize_path(const std::string& path) {
     std::vector<std::string> parts;
     std::istringstream ss(path);
@@ -77,9 +79,13 @@ int fash::list_dir(void) {
     return 0;
 }
 
+// Changes sessions current path to the specified path. The path in input is
+// taken as a relative path to the current path, so using full paths (paths
+// starting from C:\ ) will give an error and not work as intended
 int fash::change_dir(void) {
     // TODO: for now the path can be changed to a file, which ofcourse should
     // not happen
+    // TODO: implement usage of full paths
     std::string new_path;
     std::cout << "[I]: ";
     std::cin >> new_path;
@@ -96,6 +102,7 @@ int fash::change_dir(void) {
     return 0;
 }
 
+// Makes directory relative to the current path
 int fash::make_dir(void) {
     std::string new_dir_name;
     std::cout << "[I]: ";
@@ -119,6 +126,8 @@ int fash::make_dir(void) {
     }
     return 0;
 };
+
+// Removes direcotry relative to the current path
 int fash::remove_dir(void) {
     std::string dir_name;
     std::cout << "[I]: ";
@@ -132,7 +141,7 @@ int fash::remove_dir(void) {
               << "At: " << new_dir_path << std::endl;
 
     if (RemoveDirectory((new_dir_path).c_str())) {
-        std::cout << "Dir Deleted successfully!";
+        std::cout << "Dir Deleted successfully!\n";
     } else {
         DWORD error = GetLastError();
         std::cout << "Following error occured: " << error;
@@ -140,6 +149,7 @@ int fash::remove_dir(void) {
     return 0;
 };
 
+// Removes item relative to the current path
 int fash::remove_item(void) {
     std::string file_name;
     std::cout << "[I]: ";
@@ -152,7 +162,7 @@ int fash::remove_item(void) {
     std::cout << "Deleting file: " << file_name << std::endl
               << "At: " << file_path << std::endl;
     if (DeleteFile((file_path).c_str())) {
-        std::cout << " file Deleted successfully!";
+        std::cout << " file Deleted successfully!\n";
     } else {
         DWORD error = GetLastError();
         std::cout << "Following error occured: " << error;
@@ -160,6 +170,7 @@ int fash::remove_item(void) {
     return 0;
 };
 
+// Copies item relative to the current path
 int fash::copy_item(void) {
     std::string old_file_path;
     std::cout << "[I]: ";
@@ -182,7 +193,11 @@ int fash::copy_item(void) {
         std::cout << "Following error occurred\n" << error << std::endl;
     }
 };
-// TODO
+// TODO: Nearly all of the function do not support usage of full paths.
+// Currently, we have one function, fash::path_exists, that could help in this
+// we can check if a path exists in itself, without appending it to the current
+// path, to check if its a full path, otherwise its a relative path and we can
+// append it to current path
 
 int fash::clear_scr(void) {
     system("cls");
