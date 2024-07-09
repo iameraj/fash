@@ -11,9 +11,14 @@ class fash {
    public:
     // provide the starting path to the shell
     fash(std::string path) {
-        current_path = path;
+        this->current_path = path;
         std::cout << "...initializing fash at - " << path << std::endl;
+        system("pause");
+        system("cls");
     };
+    int welcome_msg(void);
+    int exit_msg(void);
+    int run_sh(void);
     int list_dir(void);
     int change_dir(void);
     int make_dir(void);
