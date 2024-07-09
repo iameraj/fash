@@ -143,7 +143,7 @@ int fash::make_dir(void) {
     std::cout << "Creating new dir: " << new_dir_name << std::endl
               << "As: " << new_dir_path << std::endl;
     if (CreateDirectory((new_dir_path).c_str(), NULL)) {
-        std::cout << "Dir created successfully!";
+        std::cout << "Dir created successfully!\n";
     } else {
         DWORD error = GetLastError();
         if (error == 183) {
