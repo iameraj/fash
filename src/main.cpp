@@ -25,13 +25,8 @@ int main(void) {
     // intializing fash to a safe dummy directory [for now]
     fash session(homeDir + "\\fash");
 
-    std::cout << "Welcome to Super Shell" << std::endl;
-    std::cout << "press x to exit" << std::endl;
-
     // main loop
-    for (char ch = '~'; ch != 'X'; ch = _getch()) {
-        ch = toupper(ch);
-
+    for (char ch = '~'; ch = toupper(ch); ch = _getch()) {
         if (ch == 'L') {
             session.list_dir();
         } else if (ch == 'C') {
