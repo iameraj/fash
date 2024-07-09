@@ -62,6 +62,34 @@ std::string fash::minimize_path(const std::string& path) {
     return minimized_path.str();
 }
 
+// prints out welcome message
+int fash::welcome_msg(void) {
+    std::cout << "Hello welcome to Fast Shell!\n" << std::endl;
+    std::cout << "\tPress l to ls" << std::endl;
+    std::cout << "\tPress f to cd" << std::endl;
+    std::cout << "\tPress m to mkdir" << std::endl;
+    std::cout << "\tPress r to rmdir" << std::endl;
+    std::cout << "\tPress d to rm" << std::endl;
+    std::cout << "\tPress c to clear" << std::endl;
+    std::cout << "\tPress x to exit" << std::endl;
+}
+
+// prints out exit message
+int fash::exit_msg(void) { std::cout << "\nBye!" << std::endl; }
+
+// runs a command in powershell
+// TODO: instead of hardcoding powershell, I should set the shell according to
+// the OS/platfrom in the session initialization and use it here
+int fash::run_sh(void) {
+    std::string command;
+    std::cout << "[I]: ";
+    std::cin >> command;
+    this->normalize_slashes(command);
+    system(("powershell -c " + command).c_str());
+}
+
+// List directories at current path
+// TODO: implement listing of dirs other than current path
 int fash::list_dir(void) {
     WIN32_FIND_DATA findFileData;
     HANDLE hFind =
