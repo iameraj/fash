@@ -39,12 +39,21 @@ int main(void) {
             session.change_dir();
         } else if (ch == 'Y') {
             session.copy_item();
+        } else if (ch == '~') {
+            session.welcome_msg();
+        } else if (ch == 'D') {
+            session.remove_item();
+        } else if (ch == 'S') {
+            session.run_sh();
+        } else if (ch == 'X') {
+            session.exit_msg();
+            break;
         }
     }
     // do {
     //     char ch = _getch();
-    //     if (ch == 'L') {
-    //     }
+    //     run_command(ch, session);
+    //
     // } while (ch != 'X');
 
     _putch('\n');  // Line feed
