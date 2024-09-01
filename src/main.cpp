@@ -48,11 +48,6 @@ int main(void) {
             break;
         }
     }
-    // do {
-    //     char ch = _getch();
-    //     run_command(ch, session);
-    //
-    // } while (ch != 'X');
 
     _putch('\n');  // Line feed
 }
