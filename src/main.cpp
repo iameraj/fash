@@ -1,9 +1,6 @@
 #include <conio.h>
+#include <stdio.h>
 #include <windows.h>
-
-#include <iostream>
-#include <map>
-#include <unordered_map>
 
 #include "fash_impl_win.cpp"
 
@@ -26,7 +23,8 @@ int main(void) {
     fash session(homeDir + "\\fash");
 
     // main loop
-    for (char ch = '~'; ch = toupper(ch); ch = _getch()) {
+    for (char ch = '~'; (ch = toupper(ch)); ch = _getch()) {
+        printf("\x1b[2J");
         if (ch == 'L') {
             session.list_dir();
         } else if (ch == 'C') {
